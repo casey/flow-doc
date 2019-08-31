@@ -1,0 +1,27 @@
+digraph Architecture {
+    graph [pad="0.5", nodesep="1", ranksep="0.5", fontname = "helvetica"]
+    node [fontname = "helvetica"];
+    edge [fontname = "helvetica"];
+
+
+    subgraph cluster0 {
+        label = "Instance A"
+        flow0 [ label = "Flow" ]
+        wallet0 [ label = "Wallet" ]
+        flow0 -> wallet0
+        wallet0 -> flow0
+    }
+
+    subgraph cluster1 {
+        label="Instance B"
+        flow1 [ label = "Flow" ]
+        wallet1 [ label = "Wallet" ]
+        flow1 -> wallet1
+        wallet1 -> flow1
+    }
+
+    concentrate=true;
+
+    flow0 -> flow1 [constraint=false, dir="both", label="Flow P2P API"]
+    wallet0 -> wallet1 [constraint=false, dir="both", label="Lightning Network"]
+}
